@@ -10,6 +10,7 @@ import {
 
 import { currentNeteork } from "../../utils/currentNeteork";
 import { networkURL } from "../../config";
+import MetaImg from "../../assets/images/62e8fce0d4320850482169-min.gif";
 
 const DetailsHead = [
   "Contract Address:",
@@ -29,8 +30,9 @@ export default function LeftConrent({ nftData, tokenId, ContractAddress }) {
     >
       <CardContent sx={{ pl: 3 }}>
         <center>
+          <img src={MetaImg} alt="tt" />
           <Button
-            variant="outlined"
+            variant="contained"
             sx={{
               textTransform: "none",
               width: "220px",
@@ -46,7 +48,7 @@ export default function LeftConrent({ nftData, tokenId, ContractAddress }) {
               )
             }
           >
-            View in Metaverse
+            View Flat in Metaverse
           </Button>
         </center>
         <Typography
