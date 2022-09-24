@@ -115,3 +115,34 @@
 .header-link-bold {
   font-weight: bolder;
 }
+
+
+
+/* ----------------------------------------------------------- */
+
+.image {
+  opacity: 0.3;
+  
+  /* background-position: center center; */
+  background-color: gray;
+  /* display: inline-block; */
+  margin-left: 10px;
+}
+
+.image:hover {
+  opacity: 1;
+}
+
+.radio-img>input {
+  display: none;
+}
+
+.radio-img>.image {
+  cursor: pointer;
+  border: 2px solid black;
+}
+
+.radio-img>input:checked+.image {
+  border: 5px solid #f50057;
+  opacity: 1;
+}

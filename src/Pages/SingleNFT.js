@@ -12,6 +12,7 @@ import DeleteOutlineIcon from "@mui/icons-material/Delete";
 import { pink } from "@mui/material/colors";
 import TransctionModal from "../components/shared/TransctionModal";
 import HeaderWrapper from "../components/shared/BackgroundUI";
+import ImageRadioButton from "../components/shared/ImageRadioButton";
 // import { getSymbol } from "../utils/currencySymbol";
 // import { getResizedFile } from "../utils/reSizeImg";
 import { createAnduploadFileToIpfs } from "../utils/ipfs";
@@ -21,6 +22,17 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
 import { getTokenListingState } from "../utils/tokenListingState";
 import "../styles/background.css";
+import {
+  cillingImages,
+  frontWallImages,
+  backWallImages,
+  wallImages,
+  doorImages,
+  frontWindowImage,
+  backWindowImage,
+  floorImage,
+  washRoomWallImages,
+} from "../Metaverce_utils/Asset";
 
 const web3 = new Web3(window.ethereum);
 
@@ -34,11 +46,20 @@ const VendorSchema = Yup.object().shape({
 const Mint = () => {
   const [start, setStart] = useState(false);
   const [response, setResponse] = useState(null);
-
   const [checked, setChecked] = useState(false);
   const [description, setDescription] = useState(null);
-
   const [tokenListingState, setTokenListingState] = useState("1");
+
+  const [frontWall, setFrontWall] = useState(null);
+  const [backWall, setBackWall] = useState(null);
+  const [leftWall, setLeftWall] = useState(null);
+  const [rightWall, setRightWall] = useState(null);
+  const [topCilling, setTopCilling] = useState(null);
+  const [toiletWall, setToiletWall] = useState(null);
+  const [entranceDoorImage, setEntranceDoorImage] = useState(null);
+  const [frontWindow, setFrontWindow] = useState(null);
+  const [windowImageBack, setWindowImageBack] = useState(null);
+  const [floorImg, setFloorImg] = useState(null);
 
   const handleChange = (event) => {
     setChecked(event.target.checked);
@@ -58,6 +79,20 @@ const Mint = () => {
 
     let responseData;
 
+    const metaverceData = {
+      frontWall,
+      backWall,
+      leftWall,
+      rightWall,
+      topCilling,
+      toiletWall,
+      entranceDoorImage,
+      frontWindow,
+      windowImageBack,
+      floorImg,
+    };
+    console.log("metaverceData----->", metaverceData);
+
     const dummyAttrribute = [
       {
         display_type: "date",
@@ -71,6 +106,7 @@ const Mint = () => {
       author: authorname,
       category: category,
       description: description,
+      metaverceData: metaverceData,
       attributes: attributes.concat(dummyAttrribute),
     };
 
@@ -110,8 +146,8 @@ const Mint = () => {
       <HeaderWrapper className="header-wrapper-form">
         <div className="form-layer2">
           <Grid container columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-            <Grid item lg={3} md={3} sm={12} xs={12}></Grid>
-            <Grid item lg={6} md={6} sm={12} xs={12}>
+            <Grid item lg={1} md={1} sm={12} xs={12}></Grid>
+            <Grid item lg={10} md={10} sm={12} xs={12}>
               <div style={{ margin: 20 }}>
                 <Card
                   style={{
@@ -272,7 +308,6 @@ const Mint = () => {
                                     </Field>
                                   </div>
                                 </Grid>
-
                                 <Grid item lg={12} md={12} sm={12} xs={12}>
                                   <div
                                     className="form-group"
@@ -485,6 +520,81 @@ const Mint = () => {
                                     </FormControl>
                                   </div>
                                 </Grid>
+                                <Grid
+                                  item
+                                  lg={12}
+                                  md={12}
+                                  sm={12}
+                                  xs={12}
+                                  style={{ marginTop: 20 }}
+                                >
+                                  <ImageRadioButton
+                                    lable={"Choose Cilling Design"}
+                                    images={cillingImages}
+                                    onClick={(e) =>
+                                      setTopCilling(e.target.value)
+                                    }
+                                  />
+                                  <ImageRadioButton
+                                    lable={"Choose Floor Design"}
+                                    images={floorImage}
+                                    onClick={(e) => setFloorImg(e.target.value)}
+                                  />
+
+                                  <ImageRadioButton
+                                    lable={"Choose Front side Wall Design"}
+                                    images={frontWallImages}
+                                    onClick={(e) =>
+                                      setFrontWall(e.target.value)
+                                    }
+                                  />
+                                  <ImageRadioButton
+                                    lable={"Choose Back Side Wall Design"}
+                                    images={backWallImages}
+                                    onClick={(e) => setBackWall(e.target.value)}
+                                  />
+                                  <ImageRadioButton
+                                    lable={"Choose Left Side Wall Design"}
+                                    images={wallImages}
+                                    onClick={(e) => setLeftWall(e.target.value)}
+                                  />
+                                  <ImageRadioButton
+                                    lable={"Choose Right Side Wall Design"}
+                                    images={wallImages}
+                                    onClick={(e) =>
+                                      setRightWall(e.target.value)
+                                    }
+                                  />
+                                  <ImageRadioButton
+                                    lable={"Choose Washroom Wall Design"}
+                                    images={washRoomWallImages}
+                                    onClick={(e) =>
+                                      setToiletWall(e.target.value)
+                                    }
+                                  />
+                                  <ImageRadioButton
+                                    lable={"Choose Door Design"}
+                                    images={doorImages}
+                                    onClick={(e) =>
+                                      setEntranceDoorImage(e.target.value)
+                                    }
+                                  />
+                                  <ImageRadioButton
+                                    lable={"Choose Front Window Design"}
+                                    images={frontWindowImage}
+                                    onClick={(e) =>
+                                      setFrontWindow(e.target.value)
+                                    }
+                                  />
+
+                                  <ImageRadioButton
+                                    lable={"Choose Back Window Design"}
+                                    images={backWindowImage}
+                                    onClick={(e) =>
+                                      setWindowImageBack(e.target.value)
+                                    }
+                                  />
+                                </Grid>
 
                                 <Grid item lg={12} md={12} sm={12} xs={12}>
                                   <div
@@ -526,7 +636,7 @@ const Mint = () => {
                 </Card>
               </div>
             </Grid>
-            <Grid item lg={3} md={3} sm={12} xs={12}></Grid>
+            <Grid item lg={1} md={1} sm={12} xs={12}></Grid>
           </Grid>
         </div>
       </HeaderWrapper>
