@@ -13,6 +13,7 @@ import React from "react";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import PrivetContent from "./PrivetContent";
+import MetsverceSetting from "./MetsverceSetting";
 import Attributes from "./Attributes";
 import AccessablitySettings from "./AccessablitySettings";
 import TransactionHistory from "./TransactionHistory";
@@ -233,8 +234,8 @@ const RightContent = ({
                 }}
                 disabled={owner !== account}
               />
-              {/* <Tab
-                label="Accessablity"
+              <Tab
+                label="Metaverce settings"
                 value="4"
                 sx={{
                   textTransform: "none",
@@ -242,13 +243,13 @@ const RightContent = ({
                   color: "#000000",
                 }}
                 disabled={owner !== account}
-              /> */}
+              />
             </TabList>
           </Box>
           <Attributes attributes={attributes} />
           <TransactionHistory tokenId={tokenId} />
           <PrivetContent tokenId={tokenId} attributes={attributes} />
-          <AccessablitySettings tokenId={tokenId} account={account} />
+          <MetsverceSetting tokenId={tokenId} nftData={nftData} />
         </TabContext>
       </Box>
     </Container>

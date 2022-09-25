@@ -12,7 +12,7 @@ import DeleteOutlineIcon from "@mui/icons-material/Delete";
 import { pink } from "@mui/material/colors";
 import TransctionModal from "../components/shared/TransctionModal";
 import HeaderWrapper from "../components/shared/BackgroundUI";
-import ImageRadioButton from "../components/shared/ImageRadioButton";
+
 // import { getSymbol } from "../utils/currencySymbol";
 // import { getResizedFile } from "../utils/reSizeImg";
 import { createAnduploadFileToIpfs } from "../utils/ipfs";
@@ -22,6 +22,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
 import { getTokenListingState } from "../utils/tokenListingState";
 import "../styles/background.css";
+import ImageRadioButton from "../components/shared/ImageRadioButton";
 import {
   cillingImages,
   frontWallImages,
@@ -143,7 +144,7 @@ const Mint = () => {
   return (
     <>
       {start && <TransctionModal response={response} modalClose={modalClose} />}
-      <HeaderWrapper className="header-wrapper-form">
+      <HeaderWrapper className="header-wrapper-forms">
         <div className="form-layer2">
           <Grid container columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
             <Grid item lg={1} md={1} sm={12} xs={12}></Grid>
@@ -297,13 +298,13 @@ const Mint = () => {
                                     >
                                       <option>-- Please select --</option>
                                       <option value="project-1">
-                                        Project 1
+                                        Building 1
                                       </option>
                                       <option value="project-2">
-                                        Project 2
+                                        Building 2
                                       </option>
                                       <option value="project-3">
-                                        Project 3
+                                        Building 3
                                       </option>
                                     </Field>
                                   </div>

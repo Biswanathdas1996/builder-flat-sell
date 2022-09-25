@@ -3,9 +3,32 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import FormControl from "@material-ui/core/FormControl";
 
-export default function ImageRadioButton({ lable, images, onClick }) {
+export default function ImageRadioButton({
+  lable,
+  images,
+  onClick,
+  value,
+  noZoom,
+}) {
+  const [height, setHeight] = React.useState(100);
+  const [weight, setWeight] = React.useState(500);
+
+  const updateDimention = () => {
+    setHeight(200);
+    setWeight(600);
+  };
+  const resetDimention = () => {
+    setHeight(100);
+    setWeight(500);
+  };
+
   return (
-    <div className="form-group" style={{ marginLeft: 10, marginTop: 10 }}>
+    <div
+      className="form-group"
+      style={{ marginLeft: 10, marginTop: 10 }}
+      onMouseEnter={() => !noZoom && updateDimention()}
+      onMouseLeave={() => !noZoom && resetDimention()}
+    >
       <FormControl component="fieldset">
         <Box sx={{ flexGrow: 1 }}>
           <label
@@ -25,9 +48,15 @@ export default function ImageRadioButton({ lable, images, onClick }) {
                       name={lable}
                       value={name}
                       onClick={onClick}
+                      checked={value && value === name}
                     />
                     <div className="image">
-                      <img src={image} alt="jj" height={100} width={500} />
+                      <img
+                        src={image}
+                        alt="jj"
+                        height={height}
+                        width={weight}
+                      />
                     </div>
                   </label>
                 </Grid>
