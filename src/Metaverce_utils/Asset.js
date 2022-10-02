@@ -43,6 +43,111 @@ import sideWall2 from "../assets/metaverce_assets/grey-grainy-wall-texture-monoc
 import marble from "../assets/metaverce_assets/marble.jpg";
 import marble2 from "../assets/metaverce_assets/5-things-to-keep-in-mind-while-choosing-floor-tiles-840x480.jpg";
 
+import friz from "../assets/metaverce_assets/GL-D221ABCY-Refrigerators-Front-View-D-01-VF.jpg";
+import friz2 from "../assets/metaverce_assets/GC-X257CSES-Refrigerators-Front-Light-On-Food-D-01.jpg";
+import friz3 from "../assets/metaverce_assets/360_F_307209670_6q1j6Qy9CCajBzGYplpqfsX0FEJR4YB1.jpg";
+import friz4 from "../assets/metaverce_assets/HRD-2423PRP-E.jpg";
+
+import ac from "../assets/metaverce_assets/PS-Q13MNZF-air-conditioner-front-view-D-1.jpg";
+import ac2 from "../assets/metaverce_assets/71EqxawZkPL._SX679_.jpg";
+import ac3 from "../assets/metaverce_assets/Samsung-Air-Conditioners.jpg";
+
+import almirah from "../assets/metaverce_assets/ndf-wooden-almirah-design.jpg";
+import almirah2 from "../assets/metaverce_assets/8-affordable-almirah-sunmica-design-for-modern-bedrooms-shutterstock_1871122228-1200x700-compressed.jpg";
+import almirah3 from "../assets/metaverce_assets/Ub69a875e2f064f2f8da5537c68ee30bda.jpg";
+
+import bedWood from "../assets/metaverce_assets/cherry wood_thumb.jpg";
+import bedWood2 from "../assets/metaverce_assets/brown-wooden-texture-flooring-background_53876-153336.jpg";
+import bedWood3 from "../assets/metaverce_assets/763c9e84c922b38f71f33a37b6f2dc78.jpg";
+
+export const bedWoodImage = [
+  {
+    name: "bedWood",
+    image: bedWood,
+    title: "SAMSUNG 198 L Direct Cool",
+    price: 19490,
+  },
+  {
+    name: "bedWood2",
+    image: bedWood2,
+    title: "Godrej 236 L Frost Free Double Door 2",
+    price: 49490,
+  },
+  {
+    name: "bedWood3",
+    image: bedWood3,
+    title: "Whirlpool 240 L Frost Free Triple",
+    price: 60490,
+  },
+];
+export const almirahImage = [
+  {
+    name: "almirah",
+    image: almirah,
+    title: "SAMSUNG 198 L Direct Cool",
+    price: 19490,
+  },
+  {
+    name: "almirah2",
+    image: almirah2,
+    title: "Godrej 236 L Frost Free Double Door 2",
+    price: 49490,
+  },
+  {
+    name: "almirah3",
+    image: almirah3,
+    title: "Whirlpool 240 L Frost Free Triple",
+    price: 60490,
+  },
+];
+export const acImage = [
+  {
+    name: "ac",
+    image: ac,
+    title: "SAMSUNG 198 L Direct Cool",
+    price: 19490,
+  },
+  {
+    name: "ac2",
+    image: ac2,
+    title: "Godrej 236 L Frost Free Double Door 2",
+    price: 49490,
+  },
+  {
+    name: "ac3",
+    image: ac3,
+    title: "Whirlpool 240 L Frost Free Triple",
+    price: 60490,
+  },
+];
+
+export const refrigeratorImage = [
+  {
+    name: "refrigerator",
+    image: friz,
+    title: "SAMSUNG 198 L Direct Cool",
+    price: 29490,
+  },
+  {
+    name: "refrigerator2",
+    image: friz2,
+    title: "Godrej 236 L Frost Free Double Door 2",
+    price: 19490,
+  },
+  {
+    name: "refrigerator3",
+    image: friz3,
+    title: "Whirlpool 240 L Frost Free Triple",
+    price: 20490,
+  },
+  {
+    name: "refrigerator4",
+    image: friz4,
+    title: "Haier 195 L Direct Cool Single Door",
+    price: 23490,
+  },
+];
+
 export const floorImage = [
   {
     name: "sideWall",

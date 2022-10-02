@@ -12,7 +12,7 @@ import DeleteOutlineIcon from "@mui/icons-material/Delete";
 import { pink } from "@mui/material/colors";
 import TransctionModal from "../components/shared/TransctionModal";
 import HeaderWrapper from "../components/shared/BackgroundUI";
-
+import FormGroup from "@mui/material/FormGroup";
 // import { getSymbol } from "../utils/currencySymbol";
 // import { getResizedFile } from "../utils/reSizeImg";
 import { createAnduploadFileToIpfs } from "../utils/ipfs";
@@ -34,6 +34,7 @@ import {
   floorImage,
   washRoomWallImages,
 } from "../Metaverce_utils/Asset";
+import Checkbox from "@mui/material/Checkbox";
 
 const web3 = new Web3(window.ethereum);
 
@@ -61,6 +62,7 @@ const Mint = () => {
   const [frontWindow, setFrontWindow] = useState(null);
   const [windowImageBack, setWindowImageBack] = useState(null);
   const [floorImg, setFloorImg] = useState(null);
+  const [appliances, setAppliances] = useState([]);
 
   const handleChange = (event) => {
     setChecked(event.target.checked);
@@ -91,6 +93,8 @@ const Mint = () => {
       frontWindow,
       windowImageBack,
       floorImg,
+      furnished: checked,
+      appliances,
     };
     console.log("metaverceData----->", metaverceData);
 
@@ -141,6 +145,18 @@ const Mint = () => {
     setResponse(null);
     history("/");
   };
+
+  const handleAppliancesChange = (e, val) => {
+    console.log(appliances);
+    if (appliances && appliances?.find((data) => data === val)) {
+      appliances?.pop(val);
+      setAppliances(appliances);
+    } else {
+      appliances.push(val);
+      setAppliances(appliances);
+    }
+  };
+
   return (
     <>
       {start && <TransctionModal response={response} modalClose={modalClose} />}
@@ -335,39 +351,7 @@ const Mint = () => {
                                     />
                                   </div>
                                 </Grid>
-                                <Grid item lg={6} md={6} sm={12} xs={12}>
-                                  <div
-                                    className="form-group"
-                                    style={{ marginLeft: 10, marginTop: 10 }}
-                                  >
-                                    <label for="title" className="my-2">
-                                      Royalty amount{" "}
-                                    </label>
-                                    <div style={{ float: "right" }}>
-                                      <Switch
-                                        checked={checked}
-                                        onChange={handleChange}
-                                        inputProps={{
-                                          "aria-label": "controlled",
-                                        }}
-                                      />
-                                    </div>
-                                    {checked && (
-                                      <Field
-                                        type="number"
-                                        name="royelty"
-                                        autoComplete="flase"
-                                        placeholder="Enter royalty amount (%)"
-                                        className={`form-control text-muted ${
-                                          touched.royelty && errors.royelty
-                                            ? "is-invalid"
-                                            : ""
-                                        }`}
-                                        style={{ marginRight: 10, padding: 9 }}
-                                      />
-                                    )}
-                                  </div>
-                                </Grid>
+
                                 <Grid item lg={12} md={12} sm={12} xs={12}>
                                   <div
                                     className="form-group"
@@ -519,6 +503,96 @@ const Mint = () => {
                                         />
                                       </RadioGroup>
                                     </FormControl>
+                                  </div>
+                                </Grid>
+                                <Grid item lg={6} md={6} sm={12} xs={12}>
+                                  <div
+                                    className="form-group"
+                                    style={{ marginLeft: 10, marginTop: 10 }}
+                                  >
+                                    <label
+                                      for="title"
+                                      className="my-2"
+                                      style={{
+                                        fontSize: 20,
+                                        fontWeight: "bold",
+                                        marginBottom: 20,
+                                      }}
+                                    >
+                                      Furnished room with appliances{" "}
+                                    </label>
+                                    <div style={{ float: "right" }}>
+                                      <Switch
+                                        checked={checked}
+                                        onChange={handleChange}
+                                        inputProps={{
+                                          "aria-label": "controlled",
+                                        }}
+                                      />
+                                    </div>
+                                    {checked && (
+                                      // <h5>
+                                      //   Room will be furnished, including 1 bed,
+                                      //   1 refrigerator, 1 AC, 2 basins, 1
+                                      //   almirah
+                                      // </h5>
+                                      <FormGroup>
+                                        <FormControlLabel
+                                          control={<Checkbox />}
+                                          label="Wooden Bed"
+                                          onChange={(e) =>
+                                            handleAppliancesChange(
+                                              e,
+                                              "wooden_bed"
+                                            )
+                                          }
+                                        />
+                                        <FormControlLabel
+                                          control={<Checkbox />}
+                                          label="Refrigerator"
+                                          onChange={(e) =>
+                                            handleAppliancesChange(
+                                              e,
+                                              "refrigerator"
+                                            )
+                                          }
+                                        />
+                                        <FormControlLabel
+                                          control={<Checkbox />}
+                                          label="AC"
+                                          onChange={(e) =>
+                                            handleAppliancesChange(e, "ac")
+                                          }
+                                        />
+                                        <FormControlLabel
+                                          control={<Checkbox />}
+                                          label="Almirah"
+                                          onChange={(e) =>
+                                            handleAppliancesChange(e, "almirah")
+                                          }
+                                        />
+                                        <FormControlLabel
+                                          control={<Checkbox />}
+                                          label="Toilet Basins"
+                                          onChange={(e) =>
+                                            handleAppliancesChange(
+                                              e,
+                                              "toilet_basins"
+                                            )
+                                          }
+                                        />
+                                        <FormControlLabel
+                                          control={<Checkbox />}
+                                          label="Bedroom Basins"
+                                          onChange={(e) =>
+                                            handleAppliancesChange(
+                                              e,
+                                              "bedroom_basins"
+                                            )
+                                          }
+                                        />
+                                      </FormGroup>
+                                    )}
                                   </div>
                                 </Grid>
                                 <Grid

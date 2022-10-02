@@ -14,7 +14,7 @@ import {
   floorImage,
   washRoomWallImages,
 } from "../../Metaverce_utils/Asset";
-import { Card, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 import Button from "@mui/material/Button";
 import TransctionModal from "../shared/TransctionModal";
 
@@ -31,6 +31,8 @@ const Bid = ({ tokenId, nftData }) => {
   const [frontWindow, setFrontWindow] = useState(null);
   const [windowImageBack, setWindowImageBack] = useState(null);
   const [floorImg, setFloorImg] = useState(null);
+  const [furnished, setFurnished] = useState(null);
+  const [appliances, setAppliances] = useState([]);
 
   useEffect(() => {
     setFrontWall(nftData?.metaverceData?.frontWall);
@@ -43,24 +45,26 @@ const Bid = ({ tokenId, nftData }) => {
     setFrontWindow(nftData?.metaverceData?.frontWindow);
     setWindowImageBack(nftData?.metaverceData?.windowImageBack);
     setFloorImg(nftData?.metaverceData?.floorImg);
+    setFurnished(nftData?.metaverceData?.furnished);
+    setAppliances(nftData?.metaverceData?.appliances || []);
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const saveData = async () => {
     setStart(true);
-    const metaverceData = {
-      frontWall,
-      backWall,
-      leftWall,
-      rightWall,
-      topCilling,
-      toiletWall,
-      entranceDoorImage,
-      frontWindow,
-      windowImageBack,
-      floorImg,
-    };
-    nftData.metaverceData = metaverceData;
+    nftData.metaverceData.frontWall = frontWall;
+    nftData.metaverceData.backWall = backWall;
+    nftData.metaverceData.leftWall = leftWall;
+    nftData.metaverceData.rightWall = rightWall;
+    nftData.metaverceData.topCilling = topCilling;
+    nftData.metaverceData.toiletWall = toiletWall;
+    nftData.metaverceData.entranceDoorImage = entranceDoorImage;
+    nftData.metaverceData.frontWindow = frontWindow;
+    nftData.metaverceData.windowImageBack = windowImageBack;
+    nftData.metaverceData.floorImg = floorImg;
+    nftData.metaverceData.furnished = furnished;
+    nftData.metaverceData.appliances = appliances;
     console.log("----nftData", nftData);
     const resultsSaveMetaData = await createAnduploadFileToIpfs(nftData);
     const responseData = await _transction_signed(

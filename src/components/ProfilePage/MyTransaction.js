@@ -46,7 +46,7 @@ const MyTransaction = () => {
     await fetchWallatTransction(account)
       .then((response) => response.json())
       .then((result) => {
-        settransctions(result.result);
+        settransctions(result.result || []);
         console.log(result.result);
       })
       .catch((error) => console.log("error", error));

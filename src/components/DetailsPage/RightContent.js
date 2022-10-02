@@ -15,7 +15,7 @@ import TabList from "@mui/lab/TabList";
 import PrivetContent from "./PrivetContent";
 import MetsverceSetting from "./MetsverceSetting";
 import Attributes from "./Attributes";
-import AccessablitySettings from "./AccessablitySettings";
+import Marketplace from "./Marketplace";
 import TransactionHistory from "./TransactionHistory";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
@@ -215,7 +215,7 @@ const RightContent = ({
                 }}
               />
               <Tab
-                label="Transaction history"
+                label="Transaction"
                 value="1"
                 sx={{
                   textTransform: "none",
@@ -235,8 +235,18 @@ const RightContent = ({
                 disabled={owner !== account}
               />
               <Tab
-                label="Metaverce settings"
+                label="Room settings"
                 value="4"
+                sx={{
+                  textTransform: "none",
+                  fontWeight: "bold",
+                  color: "#000000",
+                }}
+                disabled={owner !== account}
+              />
+              <Tab
+                label="Marketplace"
+                value="5"
                 sx={{
                   textTransform: "none",
                   fontWeight: "bold",
@@ -250,6 +260,7 @@ const RightContent = ({
           <TransactionHistory tokenId={tokenId} />
           <PrivetContent tokenId={tokenId} attributes={attributes} />
           <MetsverceSetting tokenId={tokenId} nftData={nftData} />
+          <Marketplace tokenId={tokenId} nftData={nftData} />
         </TabContext>
       </Box>
     </Container>
