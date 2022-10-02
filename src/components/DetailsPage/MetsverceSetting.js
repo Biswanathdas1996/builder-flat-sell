@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { TabPanel } from "@mui/lab";
 import { _transction_signed } from "../../CONTRACT-ABI/connect";
 import { createAnduploadFileToIpfs } from "../../utils/ipfs";
@@ -17,39 +17,34 @@ import {
 import { Grid } from "@mui/material";
 import Button from "@mui/material/Button";
 import TransctionModal from "../shared/TransctionModal";
+import Checkbox from "@mui/material/Checkbox";
+import FormGroup from "@mui/material/FormGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
 
 const Bid = ({ tokenId, nftData }) => {
   const [start, setStart] = useState(false);
   const [response, setResponse] = useState(null);
-  const [frontWall, setFrontWall] = useState(null);
-  const [backWall, setBackWall] = useState(null);
-  const [leftWall, setLeftWall] = useState(null);
-  const [rightWall, setRightWall] = useState(null);
-  const [topCilling, setTopCilling] = useState(null);
-  const [toiletWall, setToiletWall] = useState(null);
-  const [entranceDoorImage, setEntranceDoorImage] = useState(null);
-  const [frontWindow, setFrontWindow] = useState(null);
-  const [windowImageBack, setWindowImageBack] = useState(null);
-  const [floorImg, setFloorImg] = useState(null);
-  const [furnished, setFurnished] = useState(null);
-  const [appliances, setAppliances] = useState([]);
-
-  useEffect(() => {
-    setFrontWall(nftData?.metaverceData?.frontWall);
-    setBackWall(nftData?.metaverceData?.backWall);
-    setLeftWall(nftData?.metaverceData?.leftWall);
-    setRightWall(nftData?.metaverceData?.rightWall);
-    setTopCilling(nftData?.metaverceData?.topCilling);
-    setToiletWall(nftData?.metaverceData?.toiletWall);
-    setEntranceDoorImage(nftData?.metaverceData?.entranceDoorImage);
-    setFrontWindow(nftData?.metaverceData?.frontWindow);
-    setWindowImageBack(nftData?.metaverceData?.windowImageBack);
-    setFloorImg(nftData?.metaverceData?.floorImg);
-    setFurnished(nftData?.metaverceData?.furnished);
-    setAppliances(nftData?.metaverceData?.appliances || []);
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const [frontWall, setFrontWall] = useState(nftData?.metaverceData?.frontWall);
+  const [backWall, setBackWall] = useState(nftData?.metaverceData?.backWall);
+  const [leftWall, setLeftWall] = useState(nftData?.metaverceData?.leftWall);
+  const [rightWall, setRightWall] = useState(nftData?.metaverceData?.rightWall);
+  const [topCilling, setTopCilling] = useState(
+    nftData?.metaverceData?.topCilling
+  );
+  const [toiletWall, setToiletWall] = useState(
+    nftData?.metaverceData?.toiletWall
+  );
+  const [entranceDoorImage, setEntranceDoorImage] = useState(
+    nftData?.metaverceData?.entranceDoorImage
+  );
+  const [frontWindow, setFrontWindow] = useState(
+    nftData?.metaverceData?.frontWindow
+  );
+  const [windowImageBack, setWindowImageBack] = useState(
+    nftData?.metaverceData?.windowImageBack
+  );
+  const [floorImg, setFloorImg] = useState(nftData?.metaverceData?.floorImg);
+  const [furnished, setFurnished] = useState(nftData?.metaverceData?.furnished);
 
   const saveData = async () => {
     setStart(true);
@@ -64,8 +59,6 @@ const Bid = ({ tokenId, nftData }) => {
     nftData.metaverceData.windowImageBack = windowImageBack;
     nftData.metaverceData.floorImg = floorImg;
     nftData.metaverceData.furnished = furnished;
-    nftData.metaverceData.appliances = appliances;
-    console.log("----nftData", nftData);
     const resultsSaveMetaData = await createAnduploadFileToIpfs(nftData);
     const responseData = await _transction_signed(
       "updateTokenUri",
@@ -78,6 +71,10 @@ const Bid = ({ tokenId, nftData }) => {
   const modalClose = () => {
     setStart(false);
     setResponse(null);
+  };
+
+  const handleChange = (event) => {
+    setFurnished(event.target.checked);
   };
 
   return (
@@ -93,6 +90,23 @@ const Bid = ({ tokenId, nftData }) => {
         }}
       >
         <Grid container>
+          <Grid item lg={12} md={12} sm={12} xs={12}>
+            <label
+              for="title"
+              className="my-4"
+              style={{ fontSize: 20, fontWeight: "bold", marginBottom: 20 }}
+            >
+              Bedroom Partition
+            </label>
+            <FormGroup>
+              <FormControlLabel
+                control={<Checkbox />}
+                label="Bedroom Partition with door space"
+                checked={furnished}
+                onChange={handleChange}
+              />
+            </FormGroup>
+          </Grid>
           <Grid item lg={12} md={12} sm={12} xs={12}>
             <ImageRadioButton
               lable={"Choose Cilling Design"}

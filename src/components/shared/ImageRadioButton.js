@@ -26,8 +26,8 @@ export default function ImageRadioButton({
     <div
       className="form-group"
       style={{ marginLeft: 10, marginTop: 10 }}
-      onMouseEnter={() => !noZoom && updateDimention()}
-      onMouseLeave={() => !noZoom && resetDimention()}
+      // onMouseEnter={() => !noZoom && updateDimention()}
+      // onMouseLeave={() => !noZoom && resetDimention()}
     >
       <FormControl component="fieldset">
         <Box sx={{ flexGrow: 1 }}>
