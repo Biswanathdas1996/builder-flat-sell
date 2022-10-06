@@ -1,5 +1,4 @@
 import React from "react";
-
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -9,7 +8,6 @@ import Menu from "@mui/material/Menu";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import { Button } from "@mui/material";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-
 import SportsSoccerIcon from "@mui/icons-material/SportsSoccer";
 import MusicNoteIcon from "@mui/icons-material/MusicNote";
 import ColorLensIcon from "@mui/icons-material/ColorLens";
@@ -18,7 +16,6 @@ import Link from "@material-ui/core/Link";
 import { useNavigate } from "react-router-dom";
 import SearchBar from "../shared/SearchBar";
 import PwcLogo from "../../assets/images/nft.png";
-
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 

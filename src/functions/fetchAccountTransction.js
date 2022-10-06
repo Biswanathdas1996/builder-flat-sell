@@ -2,8 +2,9 @@ import {
   getContractAddress,
   getcurrentNetworkId,
 } from "../CONTRACT-ABI/connect";
+import { getConfigData } from "../getConfigaration";
 
-import { EtherscanBaseAPI, EtherscanAPIKEY } from "../config";
+const config = getConfigData();
 
 export async function frtchAccounttransction() {
   const networkIddarta = await getcurrentNetworkId();
@@ -14,7 +15,7 @@ export async function frtchAccounttransction() {
   };
 
   return fetch(
-    `${EtherscanBaseAPI}?module=account&action=tokennfttx&contractaddress=${cureentAccress}&page=1&offset=10000&sort=asc&apikey=${EtherscanAPIKEY}`,
+    `${config?.blockchain_base_api}?module=account&action=tokennfttx&contractaddress=${cureentAccress}&page=1&offset=10000&sort=asc&apikey=${config?.ChainExplorerAPIKEY}`,
     requestOptions
   );
 }

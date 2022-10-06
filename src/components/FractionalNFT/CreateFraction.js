@@ -6,7 +6,6 @@ import { BigNumber } from "ethers";
 
 import TransctionModal from "../shared/TransctionModal";
 import { useNavigate } from "react-router-dom";
-import RinkebyStorageAddress from "../../CONTRACT-ABI/FractionalNFT/StorageAddress.json";
 import NFTAddress from "../../CONTRACT-ABI/FractionalNFT/NFTAddress.json";
 import { Card, Grid } from "@mui/material";
 
@@ -36,7 +35,7 @@ function CreateFraction() {
 
   const handleApproveNftContract = async () => {
     setStart(true);
-    await _transction_nft("approve", RinkebyStorageAddress, selectedNft);
+    await _transction_nft("approve", null, selectedNft);
 
     setStatus("approved");
     setStart(false);
