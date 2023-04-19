@@ -123,7 +123,7 @@ const Mint = () => {
     for (let i = 0; i < token; i++) {
       responseData = await _transction_signed(
         "mintNFT",
-        resultsSaveMetaData.link,
+        JSON.stringify(resultsSaveMetaData),
         web3.utils.toWei(price.toString(), "ether"),
         royelty,
         category,

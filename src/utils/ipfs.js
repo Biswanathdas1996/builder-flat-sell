@@ -35,3 +35,7 @@ export const createAnduploadFileToIpfs = async (metaData) => {
     link: `https://${resultsSaveMetaData}.ipfs.dweb.link/ipfs.json`,
   };
 };
+
+export function ipfs_url(cid) {
+  return `https://ipfs.io/ipfs/${cid}/ipfs.json`;
+}

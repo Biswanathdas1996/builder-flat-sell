@@ -17,6 +17,7 @@ import {
 } from "../CONTRACT-ABI/connect";
 import Button from "@mui/material/Button";
 
+import { ipfs_url } from "../utils/ipfs";
 const theme = createTheme();
 
 export default function DetailsPage({ match }) {
@@ -54,11 +55,17 @@ export default function DetailsPage({ match }) {
     const getTokenListingState = await _fetch("getTokenListingState", tokenId);
     setListingState(getTokenListingState?.tokenState);
 
-    await fetch(getAllTokenUri)
+    const url = JSON.parse(getAllTokenUri);
+    console.log("-url--->", url);
+    await fetch(ipfs_url(url?.path))
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
         setNftData(data);
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("Some error occured, Please try again");
       });
   }
 

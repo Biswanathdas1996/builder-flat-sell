@@ -37,12 +37,22 @@ const Bid = ({ tokenId, nftData }) => {
     nftData.metaverceData.almirah = { image: almirah };
     nftData.metaverceData.bedWood = { image: bedWood };
     console.log("----nftData", nftData);
-    const resultsSaveMetaData = await createAnduploadFileToIpfs(nftData);
-    const responseData = await _transction_signed(
-      "updateTokenUri",
-      tokenId,
-      resultsSaveMetaData.link
-    );
+
+    let resultsSaveMetaData;
+    let responseData;
+    try {
+      resultsSaveMetaData = await createAnduploadFileToIpfs(nftData);
+      responseData = await _transction_signed(
+        "updateTokenUri",
+        tokenId,
+        JSON.stringify(resultsSaveMetaData)
+      );
+    } catch (err) {
+      alert("Please refresh the page & try again");
+      console.error(err);
+      setStart(false);
+    }
+
     setResponse(responseData);
   };
 

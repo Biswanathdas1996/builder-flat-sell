@@ -91,6 +91,13 @@ contract MyNFT is ERC721URIStorage, Ownable {
         _transfer(from, to, tokenId);
     }
 
+    function updateTokenUri(
+        uint256 id,
+        string memory tokenURI
+    ) public {
+        _setTokenURI(id, tokenURI);
+    }
+
     function doTransfer( address from, address to, uint tokenId) public  {
         _transfer(from, to, tokenId);
     }
@@ -169,11 +176,15 @@ contract MyNFT is ERC721URIStorage, Ownable {
         _privetContains[id] = PrivetContent(privetUri, id);
     }
 
+    
+
     function getPrivetContent( uint tokenId) public view returns (string memory privetUri, uint256 token){
         address tokenOwner = ownerOf(tokenId);
         require(msg.sender == tokenOwner, "Privet content is only accessable to token owner");
         PrivetContent memory privetContent = _privetContains[tokenId];
         return (privetContent.privetUri, privetContent.token );
     }
+
+
   
 }

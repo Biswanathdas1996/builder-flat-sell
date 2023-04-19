@@ -49,7 +49,7 @@ const RightContent = ({
   return (
     <Container>
       <Typography sx={{ fontSize: 30, fontWeight: "bold" }}>
-        Flat No #{tokenId}
+        Room No #{tokenId}
       </Typography>
       <Stack direction="row" spacing={12} marginTop="20px">
         <Stack direction="row">
@@ -129,7 +129,7 @@ const RightContent = ({
       </Grid>
       {owner !== account ? (
         <div style={{ marginTop: "30px", marginBottom: "30px" }}>
-          {listingState === accessablity.Listable && (
+          {window?.ethereum && listingState === accessablity.Listable && (
             <Button
               variant="contained"
               sx={{
@@ -152,9 +152,7 @@ const RightContent = ({
                   Please wait...
                 </>
               ) : (
-                <>
-                  Buy for {price / 1000000000000000000} {getSymbol()}
-                </>
+                <>Buy for {price / 1000000000000000000} INR</>
               )}
             </Button>
           )}

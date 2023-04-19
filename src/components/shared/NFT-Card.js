@@ -81,7 +81,7 @@ export default function NFTCard({
             padding: 1,
             margin: 1,
             overflow: "hidden",
-            height: 100,
+            height: 150,
           }}
         >
           <Card
@@ -104,16 +104,21 @@ export default function NFTCard({
             onClick={(e) => onClickOnPlot(e)}
           >
             {assetHavingImage.includes(listingState) ? (
-              <CardMedia
-                component="img"
-                height="90"
-                image={badgeUI(listingState)}
-                alt="green iguana"
-                style={{
-                  borderRadius: "0px",
-                  overflow: "hidden",
-                }}
-              />
+              <>
+                <CardMedia
+                  component="img"
+                  height="90"
+                  image={badgeUI(listingState)}
+                  alt="green iguana"
+                  style={{
+                    borderRadius: "0px",
+                    overflow: "hidden",
+                  }}
+                />
+                <center>
+                  <b style={{ margin: 10 }}>Room No : {tokenId}</b>
+                </center>
+              </>
             ) : (
               <CardContent style={{ paddingBottom: 0, border: "none" }}>
                 <Typography

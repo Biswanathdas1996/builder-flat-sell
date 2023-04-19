@@ -267,7 +267,7 @@ export default function Certificate({ tokenId, attributes = [] }) {
                             marginTop: 2,
                           }}
                         >
-                          Flat No #{token}
+                          Room No #{token}
                         </Typography>
 
                         <TableContainer component={Paper}>

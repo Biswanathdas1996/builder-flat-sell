@@ -11,6 +11,7 @@ import { currentNeteork } from "./utils/currentNeteork";
 import { getcurrentNetworkId } from "./CONTRACT-ABI/connect";
 import { useLocation } from "react-router-dom";
 import { fetchConfigData, getConfigData } from "./getConfigaration";
+import { decode } from "js-base64";
 
 const App = () => {
   const [icon, setIcon] = useState(null);
@@ -21,16 +22,16 @@ const App = () => {
 
   const location = useLocation();
 
-  window?.ethereum?.on("chainChanged", async (chainId) => {
-    const networkId = await getcurrentNetworkId();
-    sessionStorage.setItem("currentyNetwork", networkId);
-    getCurrencyInfo();
-    window.location.reload(true);
-  });
+  // window?.ethereum?.on("chainChanged", async (chainId) => {
+  //   const networkId = await getcurrentNetworkId();
+  //   sessionStorage.setItem("currentyNetwork", networkId);
+  //   getCurrencyInfo();
+  //   window.location.reload(true);
+  // });
 
-  window?.ethereum?.on("accountsChanged", (accounts) => {
-    window.location.reload(true);
-  });
+  // window?.ethereum?.on("accountsChanged", (accounts) => {
+  //   window.location.reload(true);
+  // });
 
   useEffect(() => {
     getCurrencyInfo();
@@ -38,11 +39,13 @@ const App = () => {
 
   const getCurrencyInfo = async () => {
     setLoading(true);
-    await fetchConfigData();
-    const currentNetworkId = await getcurrentNetworkId();
-    const configData = getConfigData();
+    const data = fetchConfigData();
+    console.log("-----data->", data);
+
+    const configData = JSON.parse(decode(data));
+    const currentNetworkId = configData?.network_id;
     setActiveNetwork(configData?.network_name);
-    if (currentNetworkId.toString() !== configData?.network_id.toString()) {
+    if (currentNetworkId?.toString() !== configData?.network_id?.toString()) {
       setAccessable(false);
     } else {
       setAccessable(true);

@@ -4,17 +4,17 @@ import ABI from "./NFT.json";
 import ETH_ADDRESS from "./Address.json";
 import POLYGON_ADDRESS from "./AddressPolygon.json";
 
-import { WalletPrivateKey, InfuraNodeURL } from "../config";
+import { WalletPrivateKey, InfuraNodeURL, network_id } from "../config";
 
 window?.ethereum?.request({
   method: "eth_requestAccounts",
 });
 
-const web3 = new Web3(window.ethereum);
+const web3 = new Web3(new Web3.providers.HttpProvider(InfuraNodeURL));
 
 export const getcurrentNetworkId = async () => {
-  const networkId = await web3?.eth?.accounts?._ethereumCall?.getNetworkId();
-  return networkId;
+  // const networkId = await web3?.eth?.accounts?._ethereumCall?.getNetworkId();
+  return network_id;
 };
 
 export const getContractAddress = (networkID) => {
@@ -35,7 +35,7 @@ const getContract = async () => {
 
 export const _transction_signed = async (service, ...props) => {
   const ADDRESS = getContractAddress(sessionStorage.getItem("currentyNetwork"));
-  const web3 = new Web3(new Web3.providers.HttpProvider(InfuraNodeURL));
+
   const signer = web3.eth.accounts.privateKeyToAccount(WalletPrivateKey);
   web3.eth.accounts.wallet.add(signer);
   const contract = new web3.eth.Contract(ABI, ADDRESS);
@@ -93,12 +93,23 @@ export const _paid_transction = async (cost, service, ...props) => {
 };
 
 export const _account = async () => {
-  const accounts = await web3.eth.getAccounts();
-  return accounts[0];
+  if (window?.ethereum) {
+    const web3 = new Web3(window?.ethereum);
+    const accounts = web3 && (await web3?.eth?.getAccounts());
+    return accounts[0];
+  } else {
+    return null;
+  }
 };
 
 export const _fetch = async (service, ...props) => {
-  const callService = _.get(await getContract(), ["methods", service]);
+  const ADDRESS = getContractAddress(sessionStorage.getItem("currentyNetwork"));
+  const web3 = new Web3(new Web3.providers.HttpProvider(InfuraNodeURL));
+  const signer = web3.eth.accounts.privateKeyToAccount(WalletPrivateKey);
+  web3.eth.accounts.wallet.add(signer);
+  const contract = new web3.eth.Contract(ABI, ADDRESS);
+
+  const callService = _.get(contract, ["methods", service]);
   const accounts = await web3.eth.getAccounts();
   let data;
   if (props) {
